@@ -1,34 +1,42 @@
 # 多功能电子表 - 交接速记
 
-## 工程与最新产物
+## 当前状态
 
-- 工作区：`D:\UniFile\Grade3\26_27_1\ShuZiXiTongKeShe\Course_Project`
-- Vivado 工程：`Vivado_Project_File\clock\clock.xpr`；器件：HX7A75C / `xc7a75tfgg484-2`；Vivado 2023.2。
-- 最新可上板 bitstream：`Vivado_Project_File\clock\batch_build\clock_top.bit`。
-- 需求与当前交互规格：`Question&Solution\多功能电子表.md`、`Question&Solution\界面控制设计.md`。后者是按键/开关行为的优先来源。
-- RTL：`Vivado_Project_File\clock\clock.srcs\sources_1\new\`；仿真：`clock.srcs\sim_1\new\clock_tb.v`；约束：`clock.srcs\constrs_1\new\clock.xdc`。
+- 目标板：HX7A75C，器件 `xc7a75tfgg484-2`，Vivado 2023.2。
+- 2026-09-07 已完成实板测试，时间、显示、按键、开关、闹钟解除和复位均正常。
+- 实板验证过的最终位流：`Vivado_Project_File\clock\batch_build\clock_top.bit`。
+- 位流 SHA-256：`3E041B215289A5F6FF66DDA2D7E54A16C0FC3F0DEA18C890C7B1B03E10FE099B`。
+- 不要误用 `clock.runs\impl_1\clock_top.bit`，它早于最终数码管修复。
 
-## 当前交互规则
+## 入口文件
 
-- KEY1：查看模式循环切换时间、日期、闹钟、倒计时；编辑模式循环切换当前页面字段。
-- KEY2 / KEY3：编辑模式中当前字段加一 / 减一；仅在闹钟查看页分别选择上一组 / 下一组闹钟。
-- KEY4：以数码管正放为方向基准，SW4 向上（逻辑 0）时仅解除正在响铃的闹钟；SW4 向下（逻辑 1）时，KEY4 是全局复位。
-- SW1：闹钟总开关，关闭会立即静音当前响铃或等待二次响铃的闹钟。
-- SW2：倒计时运行/暂停。编辑其他页面不会暂停倒计时。
-- SW3：查看/编辑模式；每次进入编辑均从该页第一个字段开始。
-- 倒计时显示/设置为 `MM:SS`。三组闹钟在查看页通过 KEY2/KEY3 选择。
-- 当前设置模式采用**字段内回绕，不自动跨字段进位/借位**：例如 9 月 30 日的“日 +1”变为 9 月 1 日；59 秒加一变为 00 秒。月份和日期上限仍按大小月、闰年约束；年份调整导致非闰年时，2 月 29 日会钳位为 2 月 28 日。
+- 用户操作唯一参考：`Question&Solution\用法.md`。
+- 原始需求：`Question&Solution\多功能电子表.md`；交互设计背景：`Question&Solution\界面控制设计.md`。
+- 顶层：`Vivado_Project_File\clock\clock.srcs\sources_1\new\clock_top.v`。
+- RTL 目录：`clock.srcs\sources_1\new\`；测试平台：`clock.srcs\sim_1\new\clock_tb.v`；约束：`clock.srcs\constrs_1\new\clock.xdc`。
 
-## 硬件要点
+## 必须保留的板级结论
 
-- 50 MHz 时钟：Y18；KEY1/2：E3/G4、LVCMOS15；KEY3/4：P19/R19、LVCMOS33，按下为低。
-- SW1--4：N14/P16/R17/N15。以数码管正放为方向基准，物理向上为逻辑 0、物理向下为逻辑 1。LED1：AA6，高电平点亮。
-- 数码管共阳：段码低有效；位选由 PNP9012 高边管驱动，FPGA 侧实测为低有效。驱动已采用“一位低有效 + 约 1 us 换位消隐”，以避免多位叠加成 0/8 和残影。以数码管正放为方向基准，上板必须将 **SW6 拨下**，否则复用管脚连接双色 LED 而非数码管。
-- 顶层已按 50 MHz 配置：真实秒、10 ms 按键消抖、编辑和 LED 的完整闪烁约 1 Hz。上电复位约 20 ms；同时按下四个按键也会复位。
+- 所有物理方向均以**数码管正放、板上文字正常阅读**为准。SW1～SW4 向上是逻辑 0，向下是逻辑 1；这与开发板手册中的方向文字相反。
+- SW4 向上时 KEY4 解除正在响铃的闹钟；SW4 向下时 KEY4 全局复位。四键同时按下也是备用复位。
+- SW6 必须向下才连接数码管，向上连接八组双色 LED。
+- 数码管共阳，段码低有效；PNP9012 位选在 FPGA 侧也是低有效。
+- 最初实板出现全屏 0/8 交替和残亮，是因为位选被写成高有效，导致多数位同时导通。`digital_tube.v` 已改为 one-cold 位选，并加入 50 个 50 MHz 周期（约 1 us）的换位消隐。
+- 50 MHz 时钟为 Y18；KEY1/2 为 E3/G4（LVCMOS15），KEY3/4 为 P19/R19（LVCMOS33），按键按下为低；SW1～SW4 为 N14/P16/R17/N15；LED1 为 AA6、高电平点亮。
 
-## 验证状态
+## 实现与验证
 
-- 最新 RTL smoke test 已通过：除查看/编辑下的 KEY1、KEY4 无副作用、闹钟组选择、SW4+KEY4 复位、倒计时跨页面编辑持续运行、SW1 立即静音外，还检查数码管位选始终 one-cold 且换位经过全灭状态。
-- 最新批处理实现已通过：DRC 0 违规；901/901 可布线网络完成布线；WNS 13.868 ns，WHS 0.129 ns。
-- 报告：`batch_build\drc.rpt`、`timing_summary.rpt`、`route_status.rpt`。
-- `Synth 8-7080` 仅表示并行综合条件未满足，只影响构建速度；无设计错误或有害警告。
+- 默认参数：真实 1 秒、10 ms 按键消抖、约 1 Hz 字段/LED 闪烁、约 20 ms 上电复位。
+- 设置采用字段内回绕，不跨字段自动进位或借位；日期仍限制大小月和闰年。
+- RTL smoke test 已通过功能测试，并断言数码管位选始终 one-cold、换位必经全灭状态。
+- 最终实现：DRC 0 违规，901/901 可布线网络完成，WNS 13.868 ns，WHS 0.129 ns。
+- 报告位于 `Vivado_Project_File\clock\batch_build\{drc.rpt,timing_summary.rpt,route_status.rpt}`。
+
+在 `Vivado_Project_File\clock` 目录运行：
+
+```powershell
+& 'D:\Software\Vivado\2023.2\bin\vivado.bat' -mode batch -source run_rtl_sim.tcl
+& 'D:\Software\Vivado\2023.2\bin\vivado.bat' -mode batch -source build_bitstream.tcl
+```
+
+每次修改 RTL 后必须先跑仿真，再重新生成并检查 `batch_build\clock_top.bit`。
