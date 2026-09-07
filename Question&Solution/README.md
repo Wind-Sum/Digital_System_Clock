@@ -1,0 +1,3 @@
+verilog源代码文件在Vivado_Project_File/clock/clock.srcs/sources_1内
+xdc约束文件在Vivado_Project_File/clock/clock.srcs/constrs_1ni内
+仿真文件在Vivado_Project_File/clock/clock.srcs/sim_1内

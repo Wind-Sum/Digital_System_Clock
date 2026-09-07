@@ -1,0 +1,107 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Mon Sep  7 16:39:45 2026
+| Host         : shdbgf running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file clock_top_control_sets_placed.rpt
+| Design       : clock_top
+| Device       : xc7a75t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    29 |
+|    Minimum number of control sets                        |    29 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    81 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    29 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     3 |
+| >= 6 to < 8        |    13 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    12 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              18 |           14 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |             176 |           57 |
+| Yes          | No                    | No                     |              32 |            8 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             165 |           66 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+-------------------------------------+-------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |            Enable Signal            |              Set/Reset Signal             | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+-------------------------------------+-------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | u_control/day_tick_reg[0]           | u_display/rst                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | u_alarm/phase_count                 | u_alarm/phase_count[3]_i_1_n_0            |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | u_control/edit_field_reg[0]_1       | u_countdown/second[5]_i_1__0_n_0          |                3 |              5 |         1.67 |
+|  clk_IBUF_BUFG | u_date/day[5]_i_1_n_0               | u_display/rst                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | u_control/key_pulse_reg[2][0]       | u_display/rst                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | u_control/alarm_select_reg[1]_1[0]  | u_display/rst                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | u_control/alarm_select_reg[0]_0[0]  | u_display/rst                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | u_control/display_mode_reg[0]_3[0]  | u_display/rst                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | u_control/E[0]                      | u_display/rst                             |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG | u_control/alarm_select_reg[1]_3[0]  | u_display/rst                             |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG | u_control/alarm_select_reg[0]_1[0]  | u_display/rst                             |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG | u_control/alarm_select_reg[1]_0[0]  | u_display/rst                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | u_control/alarm_select_reg[1]_2[0]  | u_display/rst                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | u_control/tick_1s_reg[0]            | u_display/rst                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | u_display/blanking_reg_n_0          | u_display/seg[6]_i_1_n_0                  |                1 |              7 |         7.00 |
+|  clk_IBUF_BUFG | u_control/edit_field_reg[0]_0[0]    | u_display/rst                             |                5 |              7 |         1.40 |
+|  clk_IBUF_BUFG | u_display/blanking_reg_n_0          | u_display/dig[7]_i_1_n_0                  |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG |                                     |                                           |               14 |             18 |         1.29 |
+|  clk_IBUF_BUFG |                                     | u_key_driver/debounce_count[0][0]_i_1_n_0 |                5 |             19 |         3.80 |
+|  clk_IBUF_BUFG |                                     | u_key_driver/debounce_count[3][0]_i_1_n_0 |                5 |             19 |         3.80 |
+|  clk_IBUF_BUFG |                                     | u_key_driver/debounce_count[2][0]_i_1_n_0 |                5 |             19 |         3.80 |
+|  clk_IBUF_BUFG |                                     | u_key_driver/debounce_count[1][0]_i_1_n_0 |                5 |             19 |         3.80 |
+|  clk_IBUF_BUFG |                                     | u_display/rst                             |               16 |             24 |         1.50 |
+|  clk_IBUF_BUFG |                                     | u_display/blink_count[0]_i_1_n_0          |                7 |             25 |         3.57 |
+|  clk_IBUF_BUFG |                                     | u_alarm/alarm_trigger_reg_0               |                7 |             25 |         3.57 |
+|  clk_IBUF_BUFG |                                     | u_clk_div/count[0]_i_1_n_0                |                7 |             26 |         3.71 |
+|  clk_IBUF_BUFG | power_on_count[0]_i_1_n_0           |                                           |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_display/blanking_reg_n_0          | u_display/blank_count[31]_i_1_n_0         |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | u_display/refresh_count[31]_i_1_n_0 | u_display/rst                             |               11 |             32 |         2.91 |
++----------------+-------------------------------------+-------------------------------------------+------------------+----------------+--------------+
+
+

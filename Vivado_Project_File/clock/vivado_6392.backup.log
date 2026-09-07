@@ -1,0 +1,112 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sun Sep  6 16:37:20 2026
+# Process ID: 6392
+# Current directory: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock
+# Command line: vivado.exe -mode batch -source run_rtl_sim.tcl
+# Log file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/vivado.log
+# Journal file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock\vivado.jou
+# Running On: shdbgf, OS: Windows, CPU Frequency: 2419 MHz, CPU Physical cores: 16, Host memory: 16873 MB
+#-----------------------------------------------------------
+CRITICAL WARNING: [Common 17-741] No write access right to the local Tcl store at 'C'. XilinxTclStore is reverted to the installation area. If you want to use local Tcl Store, please change the access right and relaunch Vivado.
+source run_rtl_sim.tcl
+# open_project clock.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock'
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:12 . Memory (MB): peak = 465.070 ; gain = 183.281
+# set_property top clock_top [get_filesets sources_1]
+# set_property top clock_tb [get_filesets sim_1]
+# launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'clock_tb'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'D:/Software/Vivado/2023.2/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'clock_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj clock_tb_vlog.prj"
+ECHO is off.
+ECHO is off.
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/alarm.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alarm
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/clk_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/clock_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_top
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/control_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module control_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/countdown.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module countdown
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/date.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module date_counter
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/digital_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module digital_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/key_driver.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module key_driver
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/led.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module led
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/time.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module time_counter
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sim_1/new/clock_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_tb
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot clock_tb_behav xil_defaultlib.clock_tb xil_defaultlib.glbl -log elaborate.log"
+ECHO is off.
+ECHO is off.
+Vivado Simulator v2023.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/Software/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot clock_tb_behav xil_defaultlib.clock_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clk_div(CLOCKS_PER_SECOND=10)
+Compiling module xil_defaultlib.key_driver(DEBOUNCE_CYCLES=2)
+Compiling module xil_defaultlib.time_counter
+Compiling module xil_defaultlib.date_counter
+Compiling module xil_defaultlib.alarm
+Compiling module xil_defaultlib.countdown
+Compiling module xil_defaultlib.control_unit
+Compiling module xil_defaultlib.digital_tube(REFRESH_DIV=2,BLINK...
+Compiling module xil_defaultlib.led(HALF_PERIOD_CYCLES=2)
+Compiling module xil_defaultlib.clock_top(CLOCKS_PER_SECOND=10,D...
+Compiling module xil_defaultlib.clock_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot clock_tb_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 472.266 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '6' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "clock_tb_behav -key {Behavioral:sim_1:Functional:clock_tb} -tclbatch {clock_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source clock_tb.tcl
+## current_wave_config
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'clock_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:12 . Memory (MB): peak = 479.133 ; gain = 14.062
+# run all
+RTL smoke test PASSED
+$finish called at time : 1105 ns : File "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sim_1/new/clock_tb.v" Line 111
+# close_sim
+INFO: [Simtcl 6-16] Simulation closed
+# close_project
+# exit
+INFO: [Common 17-206] Exiting Vivado at Sun Sep  6 16:37:48 2026...

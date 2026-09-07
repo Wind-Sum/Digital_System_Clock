@@ -1,0 +1,66 @@
+0. clock_top 顶层模块
+
+1. clk_div 分频器模块
+1.1 输入：input clk, input rst
+1.2 输出：output reg tick_1s//一秒脉冲;
+1.3 过程：0-4999999计数满一次产生一次脉冲信号
+
+2. time 时间模块
+2.1 输入：clk, rst, tick_1s, edit_enable//查看or修改模式选择, [1:0] edit_field//二进制编码改时或分或秒, add, sub
+2.2 输出：output reg [5:0] hour, output reg [5:0] minute, output reg [5:0] second, output reg day_tick//日期加一
+2.3 过程：正常计时、用户修改、进位
+
+3. date 日期模块
+3.1 输入：clk, rst, day_tick, edit_enable//查看or修改模式选择, [1:0] edit_field//二进制编码改时或分或秒, add, sub
+3.2 输出：output reg [6:0] year//表示0-99，然后加2000; output reg [3:0] month; output reg [5:0] day
+3.3 过程：日期自增、日期进位、闰年判定、日期修改
+
+4. alarm 闹钟模块
+4.1 输入：clk, rst, [5:0] hour, [5:0] minute, [5:0] second, alarm_enable, edit_enable, [1:0] edit_field, add, sub, [1:0] alarm_select
+4.2 输出：reg [5:0] alarm_hour[0:2], reg [5:0] alarm_minute[0:2], reg alarm_trigger//LED触发器
+4.3 过程：闹钟到点判定、闹钟关闭
+
+5. countdown 倒计时模块
+5.1 输入：clk, rst, tick_1s, countdown_enable, edit_enable, [1:0] edit_field, add, sub
+5.2 输出：reg [5:0] hour, reg [5:0] minute, reg [5:0] second, reg countdown_finish
+5.3 过程：设置、运行、触发LED
+
+6. led LED闪烁模块
+6.1 输入：clk, rst, trigger
+6.2 输出：reg led_out
+6.3 过程：初始、trigger上升沿触发、持续、结束
+
+7. key_driver 按键消抖模块，注意按键为按下低电平、松开高电平
+7.1 输入：clk, rst, [3:0] key
+7.2 输出：reg [3:0] key_pulse
+7.3 过程：同步、计数消抖、产生脉冲
+
+8. control_unit 控制模块
+8.1 输入输出接口：
+module control_unit(
+input clk, input rst,
+//按键
+input [3:0] key_pulse,
+//开关
+input sw1, input sw2, input sw3,
+//时间数据
+input [5:0] hour, input [5:0] minute, input [5:0] second,
+//日期数据
+input [6:0] year,input [3:0] month, input [5:0] day,
+//输出控制
+output reg time_add, output reg time_sub, output reg date_add, output reg date_sub,
+output reg alarm_add, output reg alarm_sub, output reg countdown_add, output reg countdown_sub,
+//显示
+output reg [31:0] display_data,
+//闪烁
+output reg [7:0] blink_mask
+);
+8.2 过程：key1切换项目（时间/日期/闹钟/倒计时）、key2增加、key3减少、key4闹钟确定、SW1闹钟开关、SW2倒计时是否运行、SW3查看修改切换
+
+9. digital_tube 数码管显示模块
+9.1 输入输出模块：
+module digital_tube(
+input clk, input rst, input [31:0] display_data, input [7:0] blink_mask,
+output reg [7:0] seg, output reg [7:0] dig
+);
+9.2 过程：扫描计数器、取当前数据、seg_decoder、位选输出、修改字段闪烁

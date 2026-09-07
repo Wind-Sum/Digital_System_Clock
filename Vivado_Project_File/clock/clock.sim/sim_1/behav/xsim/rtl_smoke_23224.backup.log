@@ -1,0 +1,19 @@
+#-----------------------------------------------------------
+# xsim v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Sep  5 10:12:52 2026
+# Process ID: 23224
+# Current directory: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim
+# Command line: xsim.exe -log rtl_smoke.log -mode tcl -source {xsim.dir/clock_tb_behav/xsim_script.tcl}
+# Log file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim/rtl_smoke.log
+# Journal file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim\xsim.jou
+# Running On: shdbgf, OS: Windows, CPU Frequency: 2419 MHz, CPU Physical cores: 16, Host memory: 16873 MB
+#-----------------------------------------------------------
+source xsim.dir/clock_tb_behav/xsim_script.tcl
+# xsim {clock_tb_behav} -autoloadwcfg -tclbatch {D:\UniFile\Grade3\26_27_1\ShuZiXiTongKeShe\Course_Project\Vivado_Project_File\clock\run_xsim_all.tcl}
+Time resolution is 1 ps
+source {D:UniFileGrade3_27_1ShuZiXiTongKeSheCourse_ProjectVivado_Project_Fileclockun_xsim_all.tcl}
+couldn't read file "D:UniFileGrade3_27_1ShuZiXiTongKeSheCourse_ProjectVivado_Project_Fileclockun_xsim_all.tcl": no such file or directory
+INFO: [Common 17-206] Exiting xsim at Sat Sep  5 10:12:55 2026...

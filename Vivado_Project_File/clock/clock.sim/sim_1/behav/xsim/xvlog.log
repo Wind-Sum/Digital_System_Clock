@@ -1,0 +1,22 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/alarm.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alarm
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/clk_div.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_div
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/clock_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_top
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/control_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module control_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/countdown.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module countdown
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/date.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module date_counter
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/digital_tube.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module digital_tube
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/key_driver.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module key_driver
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/led.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module led
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sources_1/new/time.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module time_counter
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.srcs/sim_1/new/clock_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_tb

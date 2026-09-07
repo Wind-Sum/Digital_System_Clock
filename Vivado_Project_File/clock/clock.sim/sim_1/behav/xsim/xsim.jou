@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# xsim v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Sep  5 10:33:58 2026
+# Process ID: 14972
+# Current directory: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim
+# Command line: xsim.exe -log rtl_smoke.log -mode tcl -source {xsim.dir/clock_tb_behav/xsim_script.tcl}
+# Log file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim/rtl_smoke.log
+# Journal file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.sim/sim_1/behav/xsim\xsim.jou
+# Running On: shdbgf, OS: Windows, CPU Frequency: 2419 MHz, CPU Physical cores: 16, Host memory: 16873 MB
+#-----------------------------------------------------------
+source xsim.dir/clock_tb_behav/xsim_script.tcl
+source D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/run_xsim_all.tcl
