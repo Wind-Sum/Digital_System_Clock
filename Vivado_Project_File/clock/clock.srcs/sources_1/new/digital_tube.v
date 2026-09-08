@@ -1,13 +1,7 @@
 `timescale 1ns / 1ps
-// Eight-digit scanner for the board's common-anode display.  Segment outputs
-// and the PNP-driven SEL/DIGIT enables are active-low. display_data is eight
-// packed hexadecimal nibbles; a value of F is rendered blank.
 module digital_tube #(
     parameter integer REFRESH_DIV = 5_000,
     parameter integer BLINK_DIV   = 25_000_000,
-    // The common-anode digit drivers use PNP high-side transistors, so SEL
-    // is active-low.  Keep every digit disabled briefly while changing the
-    // segment bus to prevent transistor storage time from causing ghosting.
     parameter integer BLANK_CYCLES = 50
 )(
     input  wire        clk,
@@ -46,7 +40,7 @@ module digital_tube #(
 
     always @(*) begin
         case (scan_index)
-            3'd0: current_digit = display_data[31:28]; // leftmost SEL0
+            3'd0: current_digit = display_data[31:28]; // 最左位 SEL0
             3'd1: current_digit = display_data[27:24];
             3'd2: current_digit = display_data[23:20];
             3'd3: current_digit = display_data[19:16];
@@ -76,9 +70,6 @@ module digital_tube #(
             end
 
             if (blanking) begin
-                // Load the next segment pattern only while all digits are
-                // disabled.  The pattern is then already stable before the
-                // selected PNP digit driver is turned on.
                 dig <= 8'hff;
                 if (blink_mask[scan_index] && !blink_on)
                     seg <= 8'hff;

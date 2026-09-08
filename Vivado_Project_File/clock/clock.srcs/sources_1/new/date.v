@@ -1,12 +1,10 @@
 `timescale 1ns / 1ps
-// Gregorian calendar for the 2000--2099 range.  year is stored as an offset
-// from 2000, which makes the four-year leap-year rule sufficient here.
 module date_counter(
     input  wire       clk,
     input  wire       rst,
     input  wire       day_tick,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: year, 1: month, 2: day
+    input  wire [1:0] edit_field, // 0: 年, 1: 月, 2: 日
     input  wire       add,
     input  wire       sub,
     output reg  [6:0] year,
@@ -35,8 +33,7 @@ module date_counter(
             if (add && !sub) begin
                 case (edit_field)
                     2'd0: begin
-                        year <= (year == 7'd99) ? 7'd0 : year + 1'b1;
-                        // Moving away from a leap year must clamp Feb 29.
+                        year <= (year == 7'd99) ? 7'd0 : year + 1'b1; //下一个上升沿才改
                         if ((year[1:0] == 2'b00) && month == 4'd2 && day == 6'd29)
                             day <= 6'd28;
                     end

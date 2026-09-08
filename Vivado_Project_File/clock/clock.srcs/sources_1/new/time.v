@@ -1,12 +1,10 @@
 `timescale 1ns / 1ps
-// 24-hour clock.  During editing the clock is held, so an operator can make
-// a stable adjustment without losing seconds while pressing a key.
 module time_counter(
     input  wire       clk,
     input  wire       rst,
     input  wire       tick_1s,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: hour, 1: minute, 2: second
+    input  wire [1:0] edit_field, // 0: 小时, 1: 分钟, 2: 秒
     input  wire       add,
     input  wire       sub,
     output reg  [5:0] hour,
@@ -21,7 +19,6 @@ module time_counter(
             minute <= 6'd0;
             second <= 6'd0;
         end else if (edit_enable) begin
-            // A conflicting add/sub pair deliberately has no effect.
             if (add && !sub) begin
                 case (edit_field)
                     2'd0: hour   <= (hour   == 6'd23) ? 6'd0 : hour   + 1'b1;

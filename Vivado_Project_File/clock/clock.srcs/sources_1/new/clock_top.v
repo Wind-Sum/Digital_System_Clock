@@ -1,7 +1,4 @@
 `timescale 1ns / 1ps
-// Board-level top module.
-// key[3:0] are active-low push buttons.  Switch allocation is documented in
-// control_unit.v; sw[3] is an alarm-selection modifier on the alarm page.
 module clock_top #(
     parameter integer CLOCKS_PER_SECOND = 50_000_000,
     parameter integer DEBOUNCE_CYCLES   = 500_000,
@@ -18,9 +15,6 @@ module clock_top #(
     output wire [7:0] dig,
     output wire       led_out
 );
-    // The board has no dedicated user reset input.  Hold the design in reset
-    // during configuration start-up. SW4 selects KEY4 as a manual reset;
-    // pressing all four active-low keys also remains a manual-reset shortcut.
     reg [31:0] power_on_count = 32'd0;
     reg        power_on_done  = 1'b0;
     wire       rst = !power_on_done || (~|key) || (sw[3] && !key[3]);

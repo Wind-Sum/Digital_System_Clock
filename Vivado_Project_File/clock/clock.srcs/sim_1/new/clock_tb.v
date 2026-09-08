@@ -1,6 +1,4 @@
 `timescale 1ns / 1ps
-// Smoke test: shortened divider/debounce values make one simulated second
-// take ten clock edges.  Open the waveform to inspect display and LED scans.
 module clock_tb;
     reg clk = 1'b0;
     reg [3:0] key = 4'b1111;
@@ -20,8 +18,7 @@ module clock_tb;
         .clk(clk), .key(key), .sw(sw), .seg(seg), .dig(dig), .led_out(led_out)
     );
 
-    // Isolated check that SW1's master-enable semantics silence an alarm
-    // already in its ringing state.
+    // 单独检查：SW1 作为闹钟总开关，其语义能使一个已处于响铃状态的闹钟静默。
     alarm alarm_master_enable_tb (
         .clk(clk), .rst(alarm_test_rst), .tick_1s(dut.tick_1s),
         .hour(6'd7), .minute(6'd0), .second(6'd0),
@@ -45,9 +42,8 @@ module clock_tb;
         end
     endfunction
 
-    // Board-level display contract: SEL is active-low, and digit changes
-    // must pass through an all-off state so that segment patterns cannot
-    // overlap on the PNP digit drivers.
+    // 板级显示约定：SEL 位选为低有效，且换位时必须经过一个全灭(全关)状态，
+    // 以免段码在 PNP 数码管驱动上重叠(产生残亮)。
     reg [7:0] previous_dig = 8'hff;
     always @(negedge clk) begin
         if (dut.power_on_done) begin
@@ -85,12 +81,12 @@ module clock_tb;
     initial begin
         repeat (8) @(posedge clk);
 
-        // View mode KEY1 changes pages.
+        // 查看模式下 KEY1 切换页面。
         press_key(0);
         if (dut.display_mode !== 2'd1)
             $fatal(1, "View-mode KEY1 failed to select the date page");
 
-        // In edit mode KEY1 changes fields but must not change the page.
+        // 修改模式下 KEY1 切换字段，但不应改变页面。
         sw[2] = 1'b1;
         repeat (2) @(posedge clk);
         if (dut.edit_field !== 2'd0)
@@ -106,7 +102,7 @@ module clock_tb;
             $fatal(1, "KEY4 changed a field while no alarm was active");
         sw[2] = 1'b0;
 
-        // In the alarm view, KEY3 selects the next of the three alarm groups.
+        // 在闹钟查看页，KEY3 选择三组闹钟的下一组。
         press_key(0);
         if (dut.display_mode !== 2'd2)
             $fatal(1, "View-mode KEY1 failed to select the alarm page");
@@ -122,7 +118,7 @@ module clock_tb;
             $fatal(1, "Alarm minute edit failed: got %0d", dut.alarm_minute1);
         sw[2] = 1'b0;
 
-        // Countdown runs in view mode and remains running while another page is edited.
+        // 倒计时在查看模式下运行，且编辑其他页面时仍保持运行。
         press_key(0);
         if (dut.display_mode !== 2'd3)
             $fatal(1, "View-mode KEY1 failed to select the countdown page");
@@ -131,7 +127,7 @@ module clock_tb;
         if ((dut.countdown_minute !== 6'd0) || (dut.countdown_second !== 6'd59))
             $fatal(1, "Countdown failed: expected 00:59, got %0d:%0d", dut.countdown_minute, dut.countdown_second);
         sw[1] = 1'b0;
-        press_key(0); // time page
+        press_key(0); // 时间页
         sw[2] = 1'b1;
         sw[1] = 1'b1;
         wait_seconds(1);
@@ -140,7 +136,7 @@ module clock_tb;
         sw[2] = 1'b0;
         sw[1] = 1'b0;
 
-        // SW4 makes KEY4 a global reset key.
+        // SW4 使 KEY4 成为全局复位键。
         sw[3] = 1'b1;
         press_key(3);
         sw[3] = 1'b0;

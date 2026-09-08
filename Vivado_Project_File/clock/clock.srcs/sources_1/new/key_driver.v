@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-// Active-low push-button debouncer.  key_pulse is one clock wide per press.
 module key_driver #(
     parameter integer DEBOUNCE_CYCLES = 500_000
 )(

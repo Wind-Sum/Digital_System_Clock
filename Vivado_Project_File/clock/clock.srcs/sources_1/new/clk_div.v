@@ -1,6 +1,4 @@
 `timescale 1ns / 1ps
-// Generates a single-clock-wide enable pulse.  The default value assumes a
-// 50 MHz board clock; override CLOCKS_PER_SECOND in simulation if desired.
 module clk_div #(
     parameter integer CLOCKS_PER_SECOND = 50_000_000
 )(

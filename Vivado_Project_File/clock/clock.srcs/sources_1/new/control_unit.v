@@ -1,11 +1,4 @@
 `timescale 1ns / 1ps
-// User interface mapping:
-//   View mode: K1 cycles time/date/alarm/countdown pages.  On the alarm
-//   page, K2/K3 select the previous/next alarm group.
-//   Edit mode: K1 cycles the current page's editable fields; K2/K3 adjust
-//   that field.  K4 only acknowledges an active alarm (SW4-low operation).
-//   SW1: alarm master enable; SW2: countdown run/pause; SW3: edit enable.
-//   SW4 + K4 is handled as an asynchronous-style global reset in clock_top.
 module control_unit(
     input  wire       clk,
     input  wire       rst,
@@ -70,8 +63,7 @@ module control_unit(
         end else begin
             alarm_ack <= 1'b0;
             sw_edit_enable_d <= sw_edit_enable;
-
-            // Every new edit session starts from the first field.
+            
             if (sw_edit_enable && !sw_edit_enable_d)
                 edit_field   <= 2'd0;
 

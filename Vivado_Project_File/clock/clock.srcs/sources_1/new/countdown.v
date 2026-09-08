@@ -5,7 +5,7 @@ module countdown(
     input  wire       tick_1s,
     input  wire       countdown_enable,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: minute, 1: second
+    input  wire [1:0] edit_field, // 0: 分钟, 1: 秒
     input  wire       add,
     input  wire       sub,
     output reg  [5:0] minute,
@@ -47,7 +47,7 @@ module countdown(
                 end
             end else if (countdown_enable && !completed) begin
                 if ((minute == 6'd0) && (second == 6'd0)) begin
-                    completed <= 1'b1; // do not ring for an unconfigured zero timer
+                    completed <= 1'b1;
                 end else if ((minute == 6'd0) && (second == 6'd1)) begin
                     second           <= 6'd0;
                     countdown_finish <= 1'b1;

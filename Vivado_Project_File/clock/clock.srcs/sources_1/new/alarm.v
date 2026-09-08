@@ -1,8 +1,4 @@
 `timescale 1ns / 1ps
-// Three independently programmable daily alarms.  A missed alarm rings for
-// five seconds, waits ten seconds, rings once more for five seconds, then
-// automatically clears.  Pressing acknowledge at either ringing phase clears
-// it immediately.
 module alarm(
     input  wire       clk,
     input  wire       rst,
@@ -12,7 +8,7 @@ module alarm(
     input  wire [5:0] second,
     input  wire       alarm_enable,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: hour, 1: minute
+    input  wire [1:0] edit_field, // 0: 小时, 1: 分钟
     input  wire       add,
     input  wire       sub,
     input  wire [1:0] alarm_select,
@@ -70,8 +66,6 @@ module alarm(
             else if (edit_enable && sub && !add)
                 adjust_selected(1'b0);
 
-            // The master switch is authoritative: turning it off also
-            // silences an alarm already ringing or waiting to ring again.
             if (!alarm_enable) begin
                 alarm_trigger <= 1'b0;
                 waiting       <= 1'b0;
