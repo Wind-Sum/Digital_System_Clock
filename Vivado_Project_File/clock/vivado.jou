@@ -3,12 +3,63 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Mon Sep  7 16:32:56 2026
-# Process ID: 11972
+# Start of session at: Tue Sep 15 16:42:04 2026
+# Process ID: 20140
 # Current directory: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock
-# Command line: vivado.exe -mode batch -source build_bitstream.tcl
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14588 D:\UniFile\Grade3\26_27_1\ShuZiXiTongKeShe\Course_Project\Vivado_Project_File\clock\clock.xpr
 # Log file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/vivado.log
 # Journal file: D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock\vivado.jou
-# Running On: shdbgf, OS: Windows, CPU Frequency: 2419 MHz, CPU Physical cores: 16, Host memory: 16873 MB
+# Running On: shdbgf, OS: Windows, CPU Frequency: 2419 MHz, CPU Physical cores: 16, Host memory: 16944 MB
 #-----------------------------------------------------------
-source build_bitstream.tcl
+start_gui
+open_project D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+launch_simulation
+source clock_tb.tcl
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/date_test_day_tick}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/date_test_year}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/date_test_month}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/date_test_day}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/date_test_day_tick}} 
+run all
+run all
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/countdown_test_enable}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/countdown_test_minute}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/countdown_test_second}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/countdown_test_finish}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/countdown_test_led}} 
+run all
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/alarm_test_enable}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/alarm_test_ack}} 
+current_wave_config {Untitled 1}
+add_wave {{/clock_tb/alarm_test_trigger}} 
+run all
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.runs/impl_1/clock_top.bit} [get_hw_devices xc7a75t_0]
+current_hw_device [get_hw_devices xc7a75t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a75t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a75t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a75t_0]
+set_property PROGRAM.FILE {D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.runs/impl_1/clock_top.bit} [get_hw_devices xc7a75t_0]
+program_hw_devices [get_hw_devices xc7a75t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a75t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a75t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a75t_0]
+set_property PROGRAM.FILE {D:/UniFile/Grade3/26_27_1/ShuZiXiTongKeShe/Course_Project/Vivado_Project_File/clock/clock.runs/impl_1/clock_top.bit} [get_hw_devices xc7a75t_0]
+program_hw_devices [get_hw_devices xc7a75t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a75t_0] 0]

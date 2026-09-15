@@ -16,8 +16,8 @@ Compiling module xil_defaultlib.date_counter
 Compiling module xil_defaultlib.alarm
 Compiling module xil_defaultlib.countdown
 Compiling module xil_defaultlib.control_unit
-Compiling module xil_defaultlib.digital_tube(REFRESH_DIV=2,BLINK...
-Compiling module xil_defaultlib.led(HALF_PERIOD_CYCLES=2)
+Compiling module xil_defaultlib.digital_tube
+Compiling module xil_defaultlib.led
 Compiling module xil_defaultlib.clock_top(CLOCKS_PER_SECOND=10,D...
 Compiling module xil_defaultlib.clock_tb
 Compiling module xil_defaultlib.glbl
