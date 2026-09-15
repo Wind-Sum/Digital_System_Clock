@@ -21,14 +21,14 @@ module key_driver #(
                 debounce_count[i] <= 32'd0;
         end else begin
             sync0     <= key;
-            sync1     <= sync0;
+            sync1     <= sync0;//二级触发
             key_pulse <= 4'b0000;
             for (i = 0; i < 4; i = i + 1) begin
                 if (sync1[i] == stable[i]) begin
                     debounce_count[i] <= 32'd0;
                 end else if (debounce_count[i] == DEBOUNCE_CYCLES - 1) begin
                     if (stable[i] && !sync1[i])
-                        key_pulse[i] <= 1'b1;
+                        key_pulse[i] <= 1'b1;//下降沿触发
                     stable[i]         <= sync1[i];
                     debounce_count[i] <= 32'd0;
                 end else begin

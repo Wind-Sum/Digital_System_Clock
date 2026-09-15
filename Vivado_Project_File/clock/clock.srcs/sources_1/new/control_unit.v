@@ -62,13 +62,13 @@ module control_unit(
             sw_edit_enable_d <= 1'b0;
         end else begin
             alarm_ack <= 1'b0;
-            sw_edit_enable_d <= sw_edit_enable;
+            sw_edit_enable_d <= sw_edit_enable;//保存上一时刻的sw，sw上0下1
             
-            if (sw_edit_enable && !sw_edit_enable_d)
+            if (sw_edit_enable && !sw_edit_enable_d)//上升沿触发修改，调整修改字段为0
                 edit_field   <= 2'd0;
 
-            if (key_pulse[0]) begin
-                if (sw_edit_enable) begin
+            if (key_pulse[0]) begin//摁key1
+                if (sw_edit_enable) begin//修改
                     if ((display_mode == MODE_ALARM) && (edit_field == 2'd1))
                         edit_field <= 2'd0;
                     else if ((display_mode == MODE_COUNTDOWN) && (edit_field == 2'd1))
@@ -79,20 +79,20 @@ module control_unit(
                         edit_field <= 2'd0;
                     else
                         edit_field <= edit_field + 1'b1;
-                end else begin
+                end else begin//查看
                     display_mode <= display_mode + 1'b1;
                     edit_field   <= 2'd0;
                 end
             end
 
-            if (!sw_edit_enable && (display_mode == MODE_ALARM)) begin
+            if (!sw_edit_enable && (display_mode == MODE_ALARM)) begin//闹钟页面的组别切换
                 if (key_pulse[1])
                     alarm_select <= (alarm_select == 2'd0) ? 2'd2 : alarm_select - 1'b1;
                 else if (key_pulse[2])
                     alarm_select <= (alarm_select == 2'd2) ? 2'd0 : alarm_select + 1'b1;
             end
 
-            if (key_pulse[3] && alarm_active)
+            if (key_pulse[3] && alarm_active)//关闹钟
                 alarm_ack <= 1'b1;
         end
     end
@@ -102,7 +102,7 @@ module control_unit(
         date_add      = 1'b0; date_sub      = 1'b0;
         alarm_add     = 1'b0; alarm_sub     = 1'b0;
         countdown_add = 1'b0; countdown_sub = 1'b0;
-        if (sw_edit_enable) begin
+        if (sw_edit_enable) begin//允许修改
             case (display_mode)
                 MODE_TIME: begin
                     time_add = key_pulse[1]; time_sub = key_pulse[2];
@@ -122,15 +122,15 @@ module control_unit(
     end
 
     always @(*) begin
-        blink_mask = 8'h00;
+        blink_mask = 8'h00;//闪烁字段
         case (display_mode)
             MODE_TIME: begin
                 display_data = {4'hf, 4'hf, tens(hour), ones(hour), tens(minute), ones(minute), tens(second), ones(second)};
                 if (sw_edit_enable) begin
                     case (edit_field)
-                        2'd0: blink_mask = 8'b0000_1100;
-                        2'd1: blink_mask = 8'b0011_0000;
-                        2'd2: blink_mask = 8'b1100_0000;
+                        2'd0: blink_mask = 8'b0000_1100;//时闪烁
+                        2'd1: blink_mask = 8'b0011_0000;//分闪烁
+                        2'd2: blink_mask = 8'b1100_0000;//秒闪烁
                         default: ;
                     endcase
                 end
@@ -147,7 +147,7 @@ module control_unit(
                 end
             end
             MODE_ALARM: begin
-                case (alarm_select)
+                case (alarm_select)//闹钟组别选择
                     2'd0: display_data = {4'hf, 4'd1, tens(alarm_hour0), ones(alarm_hour0), tens(alarm_minute0), ones(alarm_minute0), 4'hf, 4'hf};
                     2'd1: display_data = {4'hf, 4'd2, tens(alarm_hour1), ones(alarm_hour1), tens(alarm_minute1), ones(alarm_minute1), 4'hf, 4'hf};
                     default: display_data = {4'hf, 4'd3, tens(alarm_hour2), ones(alarm_hour2), tens(alarm_minute2), ones(alarm_minute2), 4'hf, 4'hf};
@@ -157,7 +157,7 @@ module control_unit(
                     else                    blink_mask = 8'b0011_0000;
                 end
             end
-            default: begin
+            default: begin//倒计时
                 display_data = {4'hf, 4'hf, 4'hf, 4'hf, tens(countdown_minute), ones(countdown_minute), tens(countdown_second), ones(countdown_second)};
                 if (sw_edit_enable) begin
                     case (edit_field)

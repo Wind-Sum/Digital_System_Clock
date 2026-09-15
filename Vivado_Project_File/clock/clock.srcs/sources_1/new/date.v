@@ -4,7 +4,7 @@ module date_counter(
     input  wire       rst,
     input  wire       day_tick,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: å¹´, 1: æœˆ, 2: æ—¥
+    input  wire [1:0] edit_field, // 0: Äê, 1: ÔÂ, 2: ÈÕ
     input  wire       add,
     input  wire       sub,
     output reg  [6:0] year,
@@ -33,7 +33,7 @@ module date_counter(
             if (add && !sub) begin
                 case (edit_field)
                     2'd0: begin
-                        year <= (year == 7'd99) ? 7'd0 : year + 1'b1; //ä¸‹ä¸€ä¸ªä¸Šå‡æ²¿æ‰æ”¹
+                        year <= (year == 7'd99) ? 7'd0 : year + 1'b1; //ÏÂÒ»¸öÉÏÉıÑØ²Å¸Ä
                         if ((year[1:0] == 2'b00) && month == 4'd2 && day == 6'd29)
                             day <= 6'd28;
                     end

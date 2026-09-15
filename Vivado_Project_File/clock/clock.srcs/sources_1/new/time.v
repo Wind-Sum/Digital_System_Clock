@@ -4,7 +4,7 @@ module time_counter(
     input  wire       rst,
     input  wire       tick_1s,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: å°æ—¶, 1: åˆ†é’Ÿ, 2: ç§’
+    input  wire [1:0] edit_field, // 0: Ğ¡Ê±, 1: ·ÖÖÓ, 2: Ãë?
     input  wire       add,
     input  wire       sub,
     output reg  [5:0] hour,

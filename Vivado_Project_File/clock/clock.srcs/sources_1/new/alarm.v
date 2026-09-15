@@ -8,7 +8,7 @@ module alarm(
     input  wire [5:0] second,
     input  wire       alarm_enable,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: 灏忔椂, 1: 鍒嗛挓
+    input  wire [1:0] edit_field, // 0: 小时, 1: 分钟
     input  wire       add,
     input  wire       sub,
     input  wire [1:0] alarm_select,
@@ -30,8 +30,8 @@ module alarm(
         ((hour == alarm_hour1) && (minute == alarm_minute1)) ||
         ((hour == alarm_hour2) && (minute == alarm_minute2));
 
-    task adjust_selected;
-        input increment;
+    task adjust_selected;//调整数值自适应
+        input increment;//增or减
         begin
             case (alarm_select)
                 2'd0: if (edit_field == 2'd0)
@@ -66,18 +66,18 @@ module alarm(
             else if (edit_enable && sub && !add)
                 adjust_selected(1'b0);
 
-            if (!alarm_enable) begin
+            if (!alarm_enable) begin//不允许响铃
                 alarm_trigger <= 1'b0;
                 waiting       <= 1'b0;
                 phase_count   <= 4'd0;
                 second_ring   <= 1'b0;
-            end else if (acknowledge && alarm_trigger) begin
+            end else if (acknowledge && alarm_trigger) begin//响铃时确认
                 alarm_trigger <= 1'b0;
                 waiting       <= 1'b0;
                 phase_count   <= 4'd0;
                 second_ring   <= 1'b0;
             end else if (tick_1s) begin
-                if (alarm_trigger) begin
+                if (alarm_trigger) begin//如果触发，响铃
                     if (phase_count == 4'd4) begin
                         alarm_trigger <= 1'b0;
                         phase_count   <= 4'd0;
@@ -89,7 +89,7 @@ module alarm(
                     end else begin
                         phase_count <= phase_count + 1'b1;
                     end
-                end else if (waiting) begin
+                end else if (waiting) begin//等待10秒
                     if (phase_count == 4'd9) begin
                         waiting       <= 1'b0;
                         alarm_trigger <= 1'b1;
@@ -98,7 +98,7 @@ module alarm(
                     end else begin
                         phase_count <= phase_count + 1'b1;
                     end
-                end else if (alarm_enable && second == 6'd0 && selected_match) begin
+                end else if (alarm_enable && second == 6'd0 && selected_match) begin//触发闹钟
                     alarm_trigger <= 1'b1;
                     phase_count   <= 4'd0;
                     second_ring   <= 1'b0;

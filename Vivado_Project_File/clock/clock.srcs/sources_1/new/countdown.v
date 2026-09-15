@@ -5,7 +5,7 @@ module countdown(
     input  wire       tick_1s,
     input  wire       countdown_enable,
     input  wire       edit_enable,
-    input  wire [1:0] edit_field, // 0: åˆ†é’Ÿ, 1: ç§’
+    input  wire [1:0] edit_field, // 0: ·ÖÖÓ, 1: Ãë
     input  wire       add,
     input  wire       sub,
     output reg  [5:0] minute,
@@ -22,7 +22,7 @@ module countdown(
             countdown_finish <= 1'b0;
             finish_seconds   <= 3'd0;
             completed        <= 1'b0;
-        end else if (edit_enable) begin
+        end else if (edit_enable) begin//ĞŞ¸Ä
             completed <= 1'b0;
             if (add && !sub) begin
                 case (edit_field)
@@ -38,7 +38,7 @@ module countdown(
                 endcase
             end
         end else if (tick_1s) begin
-            if (countdown_finish) begin
+            if (countdown_finish) begin//µ¹¼ÆÊ±Íê
                 if (finish_seconds == 3'd4) begin
                     countdown_finish <= 1'b0;
                     finish_seconds   <= 3'd0;
@@ -46,16 +46,16 @@ module countdown(
                     finish_seconds <= finish_seconds + 1'b1;
                 end
             end else if (countdown_enable && !completed) begin
-                if ((minute == 6'd0) && (second == 6'd0)) begin
+                if ((minute == 6'd0) && (second == 6'd0)) begin//ÎŞĞ§µ¹¼ÆÊ±
                     completed <= 1'b1;
-                end else if ((minute == 6'd0) && (second == 6'd1)) begin
+                end else if ((minute == 6'd0) && (second == 6'd1)) begin//²îÒ»Ãë½áÊø´¥·¢Íê³É
                     second           <= 6'd0;
                     countdown_finish <= 1'b1;
                     finish_seconds   <= 3'd0;
                     completed        <= 1'b1;
-                end else if (second != 6'd0) begin
+                end else if (second != 6'd0) begin//Ãë×Ô¼õ
                     second <= second - 1'b1;
-                end else begin
+                end else begin//·ÖÖÓ×Ô¼õ
                     second <= 6'd59;
                     minute <= minute - 1'b1;
                 end

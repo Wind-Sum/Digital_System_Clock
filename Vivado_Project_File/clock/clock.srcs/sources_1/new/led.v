@@ -12,7 +12,7 @@ module led #(
         if (rst || !trigger) begin
             count   <= 32'd0;
             led_out <= 1'b0;
-        end else if (count == HALF_PERIOD_CYCLES - 1) begin
+        end else if (count == HALF_PERIOD_CYCLES - 1) begin//°ëÃëµ¹ÖÃ
             count   <= 32'd0;
             led_out <= ~led_out;
         end else begin

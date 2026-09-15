@@ -12,7 +12,7 @@ module clk_div #(
         if (rst) begin
             count   <= 32'd0;
             tick_1s <= 1'b0;
-        end else if (count == CLOCKS_PER_SECOND - 1) begin
+        end else if (count == CLOCKS_PER_SECOND - 1) begin//50000000个时钟周期后产生一次脉冲
             count   <= 32'd0;
             tick_1s <= 1'b1;
         end else begin
